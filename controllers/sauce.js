@@ -7,11 +7,17 @@ exports.createSauce = (req, res, next) => {
   const url = req.protocol + '://' + req.get('host');
   req.body.sauce = JSON.parse(req.body.sauce);
   const sauce = new Sauce({
-    title: req.body.sauce.title,
+    userId: req.body.sauce.userId,
+    name: req.body.sauce.name,
+    manufacturer: req.body.sauce.manufacturer,
     description: req.body.sauce.description,
+    mainPepper: req.body.sauce.mainPepper,
     imageUrl: url + '/images/' + req.file.filename,
-    price: req.body.sauce.price,
-    userId: req.body.sauce.userId
+    heat: req.body.sauce.heat,
+    likes:0,
+    dislikes:0,
+    usersLiked:[],
+    usersDisliked:[]
   });
   sauce.save().then(
     () => {
@@ -21,6 +27,8 @@ exports.createSauce = (req, res, next) => {
     }
   ).catch(
     (error) => {
+
+      console.log("test")
       res.status(400).json({
         error: 'error !'
       });
