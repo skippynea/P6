@@ -58,21 +58,31 @@ exports.modifySauce = (req, res, next) => {
     const url = req.protocol + '://' + req.get('host');
   req.body.sauce = JSON.parse(req.body.sauce);
   const sauce = {
-    _id: req.params.id,
-    title: req.body.sauce.title,
+    userId: req.body.sauce.userId,
+    name: req.body.sauce.name,
+    manufacturer: req.body.sauce.manufacturer,
     description: req.body.sauce.description,
+    mainPepper: req.body.sauce.mainPepper,
     imageUrl: url + '/images/' + req.file.filename,
-    price: req.body.sauce.price,
-    userId: req.body.sauce.userId
+    heat: req.body.sauce.heat,
+    likes:0,
+    dislikes:0,
+    usersLiked:[],
+    usersDisliked:[]
   };
   } else {
     const sauce = {
-      _id: req.params.id,
-      title: req.body.title,
-      description: req.body.description,
-      imageUrl: req.body.imageUrl,
-      price: req.body.price,
-      userId: req.body.userId
+      userId: req.body.sauce.userId,
+    name: req.body.sauce.name,
+    manufacturer: req.body.sauce.manufacturer,
+    description: req.body.sauce.description,
+    mainPepper: req.body.sauce.mainPepper,
+    imageUrl: url + '/images/' + req.file.filename,
+    heat: req.body.sauce.heat,
+    likes:0,
+    dislikes:0,
+    usersLiked:[],
+    usersDisliked:[]
     };
   }
   
