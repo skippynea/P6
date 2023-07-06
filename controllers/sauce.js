@@ -175,10 +175,12 @@ exports.likeSauce = (req, res, next) => {
 
       if (update.usersLiked.includes(userIdentity)) {
         update.usersLiked.splice(update.usersLiked.indexOf(userIdentity));
+        update.likes -=1;
       }
-         
+
       if (update.usersDisliked.includes(userIdentity)){
         update.usersDisliked.splice(update.usersDisliked.indexOf(userIdentity));
+        update.dislikes -=1;
       }
     }
 
